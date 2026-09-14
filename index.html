@@ -8,38 +8,77 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="ひねくれテディのFP特訓">
   <title>ひねくれテディのFP特訓</title>
+
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="apple-touch-icon" sizes="180x180" href="/icon-180.png">
   <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+
   <style>
-    html,body{min-height:100%;margin:0}
-    body{
-      font-family:-apple-system,BlinkMacSystemFont,"Hiragino Maru Gothic ProN","Yu Gothic",sans-serif;
-      background:#f8efe5;color:#4f453f;
-      display:flex;align-items:center;justify-content:center;
-      text-align:center;padding:24px;box-sizing:border-box
+    :root{
+      --bg:#f8efe5;
+      --ink:#4f453f;
     }
-    .card{
-      max-width:420px;width:100%;background:#fffaf5;border-radius:28px;
-      padding:28px 22px;box-shadow:0 10px 30px rgba(90,70,55,.12)
+    *{box-sizing:border-box}
+    html,body{width:100%;height:100%;margin:0;background:var(--bg);overflow:hidden}
+    body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Maru Gothic ProN","Yu Gothic",sans-serif;color:var(--ink)}
+    .app-shell{
+      position:fixed;
+      inset:0;
+      width:100%;
+      height:100dvh;
+      background:var(--bg);
     }
-    img{width:160px;height:160px;border-radius:34px;object-fit:cover}
-    h1{font-size:25px;line-height:1.35;margin:16px 0 10px}
-    p{font-size:15px;line-height:1.75;margin:0 0 20px}
-    .btn{
-      display:block;background:#77685d;color:#fff;text-decoration:none;
-      border-radius:999px;padding:15px 22px;font-weight:700;font-size:17px
+    .app-frame{
+      display:block;
+      width:100%;
+      height:100%;
+      border:0;
+      margin:0;
+      padding:0;
+      background:var(--bg);
     }
-    .note{font-size:12px;opacity:.72;margin-top:14px}
+    .fallback{
+      position:fixed;
+      left:50%;
+      bottom:calc(12px + env(safe-area-inset-bottom));
+      transform:translateX(-50%);
+      z-index:20;
+      display:none;
+      width:min(92vw,420px);
+      padding:10px 14px;
+      border-radius:14px;
+      background:rgba(255,250,245,.96);
+      box-shadow:0 5px 18px rgba(90,70,55,.13);
+      text-align:center;
+      font-size:12px;
+      line-height:1.5;
+    }
+    .fallback a{color:#5d5149;font-weight:800}
   </style>
 </head>
 <body>
-  <main class="card">
-    <img src="/icon-192.png" alt="ひねくれテディのFP特訓">
-    <h1>ひねくれテディのFP特訓</h1>
-    <p>下のボタンからFP特訓を開いてください。</p>
-    <a class="btn" href="https://script.google.com/macros/s/AKfycbyDYNpNMCWrBIzEfMfIQJBdfy_SAkjnI4JkAir93VPqqfVn8XrGviMEgoaEjyzq6iMAQg/exec">FP特訓を開く</a>
-    <div class="note">ホーム画面にはこのページを追加してください。</div>
+  <main class="app-shell">
+    <iframe
+      class="app-frame"
+      src="https://script.google.com/macros/s/AKfycbyDYNpNMCWrBIzEfMfIQJBdfy_SAkjnI4JkAir93VPqqfVn8XrGviMEgoaEjyzq6iMAQg/exec"
+      title="ひねくれテディのFP特訓"
+      allow="clipboard-read; clipboard-write"
+      referrerpolicy="strict-origin-when-cross-origin">
+    </iframe>
   </main>
+
+  <div class="fallback" id="fallback">
+    画面が表示されない場合は
+    <a href="https://script.google.com/macros/s/AKfycbyDYNpNMCWrBIzEfMfIQJBdfy_SAkjnI4JkAir93VPqqfVn8XrGviMEgoaEjyzq6iMAQg/exec" target="_blank" rel="noopener noreferrer">こちらから開いてください</a>。
+  </div>
+
+  <script>
+    // 通常はiframe内にGASアプリをそのまま表示する。
+    // 読み込みに時間がかかる環境だけ、補助リンクを後から表示する。
+    window.setTimeout(function(){
+      var el=document.getElementById('fallback');
+      if(el) el.style.display='block';
+    },12000);
+  </script>
 </body>
 </html>
