@@ -37,23 +37,6 @@
       padding:0;
       background:var(--bg);
     }
-    .fallback{
-      position:fixed;
-      left:50%;
-      bottom:calc(12px + env(safe-area-inset-bottom));
-      transform:translateX(-50%);
-      z-index:20;
-      display:none;
-      width:min(92vw,420px);
-      padding:10px 14px;
-      border-radius:14px;
-      background:rgba(255,250,245,.96);
-      box-shadow:0 5px 18px rgba(90,70,55,.13);
-      text-align:center;
-      font-size:12px;
-      line-height:1.5;
-    }
-    .fallback a{color:#5d5149;font-weight:800}
   </style>
 </head>
 <body>
@@ -66,19 +49,5 @@
       referrerpolicy="strict-origin-when-cross-origin">
     </iframe>
   </main>
-
-  <div class="fallback" id="fallback">
-    画面が表示されない場合は
-    <a href="https://script.google.com/macros/s/AKfycbyDYNpNMCWrBIzEfMfIQJBdfy_SAkjnI4JkAir93VPqqfVn8XrGviMEgoaEjyzq6iMAQg/exec" target="_blank" rel="noopener noreferrer">こちらから開いてください</a>。
-  </div>
-
-  <script>
-    // 通常はiframe内にGASアプリをそのまま表示する。
-    // 読み込みに時間がかかる環境だけ、補助リンクを後から表示する。
-    window.setTimeout(function(){
-      var el=document.getElementById('fallback');
-      if(el) el.style.display='block';
-    },12000);
-  </script>
 </body>
 </html>
