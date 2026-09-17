@@ -1,20 +1,20 @@
 {
-  "name": "競馬ダービー2026",
-  "short_name": "競馬ダービー2026",
+  "name": "3人の本命",
+  "short_name": "3人の本命",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#0b4028",
-  "theme_color": "#0b4028",
+  "background_color": "#f7efd9",
+  "theme_color": "#f7efd9",
   "icons": [
     {
-      "src": "./keiba2026-icon-192-v5.png",
+      "src": "./3人の本命-icon-192-final2.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "./keiba2026-icon-512-v5.png",
+      "src": "./3人の本命-icon-512-final2.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
