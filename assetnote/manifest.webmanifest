@@ -1,6 +1,6 @@
 {
-  "name": "ひねくれテディの資産管理ノート",
-  "short_name": "資産管理ノート",
+  "name": "ひねくれ資産ノート",
+  "short_name": "ひねくれ資産ノート",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
