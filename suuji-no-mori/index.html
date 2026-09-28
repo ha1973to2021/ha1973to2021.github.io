@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f5fbf6">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="ひねくれテディのすうじの森">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>ひねくれテディのすうじの森</title>
+  <link rel="manifest" href="./manifest.webmanifest?v=1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/icon-180-v2.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192-v2.png">
+  <style>
+    :root{--bg:#f5fbf6;--ink:#456452}
+    *{box-sizing:border-box}
+    html,body{width:100%;height:100%;margin:0;background:var(--bg);overflow:hidden}
+    body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Maru Gothic ProN","Yu Gothic",sans-serif;color:var(--ink)}
+    .app-shell{position:fixed;inset:0;width:100%;height:100dvh;background:var(--bg)}
+    .app-frame{display:block;width:100%;height:100%;border:0;margin:0;padding:0;background:var(--bg)}
+    .setup{display:none;position:fixed;inset:0;padding:28px 20px;align-items:center;justify-content:center;text-align:center;background:var(--bg)}
+    .setup-card{max-width:520px;background:#fff;border:1px solid #dcebdd;border-radius:22px;padding:22px;box-shadow:0 8px 24px rgba(74,110,83,.10)}
+    .setup h1{font-size:22px;margin:0 0 10px}.setup p{line-height:1.8;color:#6d8176;margin:0}
+  </style>
+</head>
+<body>
+  <main class="app-shell" id="shell">
+    <iframe id="appFrame" class="app-frame" title="ひねくれテディのすうじの森"
+      allow="clipboard-read; clipboard-write" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </main>
+  <section class="setup" id="setup">
+    <div class="setup-card">
+      <h1>ひねくれテディのすうじの森</h1>
+      <p>最初の1回だけGoogle Apps ScriptのWebアプリURLから開いてください。以後はこのページから開けます。</p>
+    </div>
+  </section>
+  <script>
+    (function(){
+      var KEY='hinekure_suuji_no_mori_gas_url';
+      var params=new URLSearchParams(location.search);
+      var incoming=params.get('gas');
+      if(incoming && /^https:\/\/script\.google\.com\/macros\/s\/.+\/exec(?:\?|$)/.test(incoming)){
+        localStorage.setItem(KEY,incoming);
+        history.replaceState(null,'',location.pathname);
+      }
+      var gas=incoming || localStorage.getItem(KEY) || '';
+      if(!gas){
+        document.getElementById('shell').style.display='none';
+        document.getElementById('setup').style.display='flex';
+        return;
+      }
+      var sep=gas.indexOf('?')>=0?'&':'?';
+      document.getElementById('appFrame').src=gas+sep+'embed=1&v='+Date.now();
+    })();
+  </script>
+</body>
+</html>
