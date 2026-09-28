@@ -1,24 +1,12 @@
 {
-  "id": "/",
-  "name": "ひねくれテディのFP特訓",
-  "short_name": "テディFP特訓",
-  "start_url": "/",
-  "scope": "/",
+  "name": "ひねくれテディのすうじの森",
+  "short_name": "すうじの森",
+  "start_url": "./",
   "display": "standalone",
-  "background_color": "#f8efe5",
-  "theme_color": "#f8efe5",
+  "background_color": "#f5fbf6",
+  "theme_color": "#f5fbf6",
   "icons": [
-    {
-      "src": "/icon-192-v2.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/icon-512-v2.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
-    }
+    {"src": "/icon-192-v2.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "/icon-512-v2.png", "sizes": "512x512", "type": "image/png"}
   ]
 }
